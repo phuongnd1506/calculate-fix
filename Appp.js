@@ -97,26 +97,28 @@ const Body = () => {
 
             switch (operator) {
                 case '/':
-                    setValue(((Number.parseFloat(firstValue) * 10) / (Number.parseFloat(secondValue)* 10)));
-                    setFirstValue(((Number.parseFloat(firstValue) * 10) / (Number.parseFloat(secondValue)* 10)));
+                    setValue(((Number.parseFloat(firstValue) * 1000) / (Number.parseFloat(secondValue)* 1000)));
+                    setFirstValue(((Number.parseFloat(firstValue) * 1000) / (Number.parseFloat(secondValue)* 1000)));
                     setSecondValue('');
                     setOperetor('');
                     break;
                 case 'x':
-                    setValue(((Number.parseFloat(firstValue) * 10) * (Number.parseFloat(secondValue)* 10)) / 10);
-                    setFirstValue(((Number.parseFloat(firstValue) * 10) * (Number.parseFloat(secondValue)* 10)) / 10);
+                    const nhan = Number.parseFloat(firstValue) * Number.parseFloat(secondValue);
+                    const nhann = nhan.toFixed(14).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')
+                    setValue(nhann);
+                    setFirstValue(nhann);
                     setSecondValue('');
                     setOperetor('');
                     break;
                 case '-':
-                    setValue(((Number.parseFloat(firstValue) * 10) - (Number.parseFloat(secondValue)* 10)) / 10);
-                    setFirstValue(((Number.parseFloat(firstValue) * 10) - (Number.parseFloat(secondValue)* 10)) / 10);
+                    setValue(((Number.parseFloat(firstValue) * 1000) - (Number.parseFloat(secondValue)* 1000)) / 1000);
+                    setFirstValue(((Number.parseFloat(firstValue) * 1000) - (Number.parseFloat(secondValue)* 1000)) / 1000);
                     setSecondValue('');
                     setOperetor('');
                     break;
                 case '+':
-                    setValue(((Number.parseFloat(firstValue) * 10) + (Number.parseFloat(secondValue) * 10)) / 10);
-                    setFirstValue(((Number.parseFloat(firstValue) * 10) + (Number.parseFloat(secondValue) * 10)) / 10);
+                    setValue(((Number.parseFloat(firstValue) * 1000) + (Number.parseFloat(secondValue) * 1000)) / 1000);
+                    setFirstValue(((Number.parseFloat(firstValue) * 1000) + (Number.parseFloat(secondValue) * 1000)) / 1000);
                     setSecondValue('');
                     setOperetor('');
                     break;
@@ -256,7 +258,7 @@ const Body = () => {
     return (
         <View >
             <View style={styles.viewText}>
-                <Text style={styles.textResult} adjustsFontSizeToFit>{value}</Text>
+                <Text style={styles.textResult} adjustsFontSizeToFit={true}>{value}</Text>
             </View>
             <View style={{ flexDirection: 'row', justifyContent: "space-evenly", marginBottom: 10 }}>
                 <Button name='AC' color='#000' fontweight='400' backgroundColorC='#BBBBBB' onPress={() => handlePress('AC')}></Button>
